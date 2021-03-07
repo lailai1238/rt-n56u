@@ -93,7 +93,11 @@ if [ -f /etc/storage/authorized_keys ] ; then
 	chmod 600 /home/root/.ssh/authorized_keys
 fi
 
+# radio2 kick station rssi low
+/sbin/radio2_KickStaRssiLow &
+
 # perform start script
 if [ -x /etc/storage/start_script.sh ] ; then
 	/etc/storage/start_script.sh
 fi
+
