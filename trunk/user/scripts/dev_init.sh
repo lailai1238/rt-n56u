@@ -94,7 +94,7 @@ if [ -f /etc/storage/authorized_keys ] ; then
 fi
 
 # radio2 kick station rssi low
-/sbin/radio2_KickStaRssiLow &
+/sbin/radio2_kicksta_rssilow &
 
 # perform start script
 if [ -x /etc/storage/start_script.sh ] ; then
