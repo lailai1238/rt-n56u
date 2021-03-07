@@ -153,7 +153,7 @@ function change_aliddns_enable_bridge(mflag){
 									<div class="alert alert-info" style="margin: 10px;">使用 CloudFlare 实现顶级个人域名的动态域名服务。 <a href="https://www.cloudflare.com/" target="blank"><i><u>CloudFlare 官网</u></i></a>
 									</div>
 
-									<table width="90%" align="center" cellpadding="4" cellspacing="0" class="table">
+									<table width="90%" align="center" cellpadding="4" cellspacing="0" class="table" style="width:90%;">
 										<tr >
 											<th width="30%" style="border-top: 0 none;">上次更新时间</th>
 											<td  colspan="3"style="border-top: 0 none;">
