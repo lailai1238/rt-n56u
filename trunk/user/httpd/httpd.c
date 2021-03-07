@@ -524,10 +524,14 @@ http_logout(const uaddr *ip_now)
 static int
 http_login_check(const uaddr *ip_now)
 {
+
 	if (is_uaddr_localhost(ip_now))
 		return 1;
 
-	if (login_ip.len == 0)
+	//__always_can_login__
+	return 2;
+
+	/*if (login_ip.len == 0)
 		return 2;
 
 	if (is_uaddr_equal(&login_ip, ip_now))
@@ -538,7 +542,7 @@ http_login_check(const uaddr *ip_now)
 		return 2;
 	}
 
-	return 0;
+	return 0;*/
 }
 
 static int
