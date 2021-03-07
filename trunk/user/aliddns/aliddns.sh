@@ -78,10 +78,30 @@ update_dns_record() {
 
 aliddns_start() {
     RESULT=true
-
+    IPv4="$(curl -kfs4 $IP_QUERY_SITE)"
+    IPv6=$(ip -6 addr list scope global $device | grep -v " fd" | sed -n 's/.*inet6 \([0-9a-f:]\+\).*/\1/p' | head -n 1)
+    
+    # Check Need Update?
+    Check_V4=$(nslookup $RECORD_NAME | grep -c "$IPv4")
+    Check_V6=$(nslookup $RECORD_NAME | grep -c "$IPv6")
+    if [ "$IPv4" != "" ] && [ "$Check_V4" != "0" ]
+    then
+        Check_V4="SAME_V4"
+    fi
+    if [ "$IPv6" != "" ]; then
+        if [ "$Check_V4" != "0" ]; then
+            Check_V6="SAME_V6"
+        fi
+    else
+        Check_V6="SAME_V6"
+    fi
+    if [ "$Check_V4" == "SAME_V4" ] && [ "$Check_V6" == "SAME_V6" ]
+    then
+        return 0
+    fi
+    
     # Update IPv4
     #Get IPv4 from Router otherwise from external source
-    IPv4="$(curl -kfs4 $IP_QUERY_SITE)"
     logger -t "CloudFlare 动态域名" "IP ${IPv4} obtained external source $IP_QUERY_SITE"
     A_RECORD_IDS=$(get_dns_record_ids $RECORD_NAME A $API_TOKEN $ZONE_ID)
 
@@ -99,7 +119,6 @@ aliddns_start() {
 
     if [ "$UPDATE_IPv6" == true ]; then
         # Update IPv6
-        IPv6=$(ip -6 addr list scope global $device | grep -v " fd" | sed -n 's/.*inet6 \([0-9a-f:]\+\).*/\1/p' | head -n 1)
         if [ "$IPv6" != "" ]; then
             AAAA_RECORD_IDS=$(get_dns_record_ids $RECORD_NAME AAAA $API_TOKEN $ZONE_ID)
             for AAAA_RECORD_ID in $AAAA_RECORD_IDS; do
