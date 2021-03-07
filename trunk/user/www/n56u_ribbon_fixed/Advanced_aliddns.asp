@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title><#Web_Title#> - Aliddns 域名解析</title>
+<title><#Web_Title#> - CloudFlare 域名解析</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
@@ -150,25 +150,18 @@ function change_aliddns_enable_bridge(mflag){
                         </div>
 								<div class="row-fluid">
 									<div id="tabMenu" class="submenuBlock"></div>
-									<div class="alert alert-info" style="margin: 10px;">使用 Aliddns 实现顶级个人域名的 ddns 服务。 <a href="https://www.aliyun.com" target="blank"><i><u>Aliddns 主页</u></i></a>
-												<ul style="padding-top:5px;margin-top:10px;float: left;">
-												<li><a href="https://github.com/kyriosli/koolshare-aliddns" target="blank"><i><u>Aliddns 项目地址：https://github.com/kyriosli/koolshare-aliddns</u></i></a></li>
-												<li><a href="http://koolshare.cn/thread-64703-1-1.html" target="blank"><i><u>Aliddns 使用帮助：http://koolshare.cn/thread-64703-1-1.html</u></i></a></li>
-												<li>使用前需要将域名添加到 aliyun 中，并添加一条A记录，使用之后将自动更新ip</li>
-												<li>点 <a href="https://help.aliyun.com/knowledge_detail/39844.html" target="blank"><i><u>这里</u></i></a> 查看不同域名注册商修改 DNS 方法。</li>
-												<li>点 <a href="https://help.aliyun.com/knowledge_detail/38738.html" target="blank"><i><u>这里</u></i></a> 查看如何获取 Aliddns 的 Access Key ID 和 Access Key Secret。</li>
-												</ul>
+									<div class="alert alert-info" style="margin: 10px;">使用 CloudFlare 实现顶级个人域名的动态域名服务。 <a href="https://www.cloudflare.com/" target="blank"><i><u>CloudFlare 官网</u></i></a>
 									</div>
 
-									<table width="100%" align="center" cellpadding="4" cellspacing="0" class="table">
+									<table width="90%" align="center" cellpadding="4" cellspacing="0" class="table">
 										<tr >
-											<th width="30%" style="border-top: 0 none;">上次运行:</th>
+											<th width="30%" style="border-top: 0 none;">上次更新时间</th>
 											<td  colspan="3"style="border-top: 0 none;">
-											   <div >【<% nvram_get_x("","aliddns_last_act"); %>】</div>
+											   <div >(<% nvram_get_x("","aliddns_last_act"); %>)</div>
 											</td>
 										</tr>
 										<tr>
-											<th width="30%" style="border-top: 0 none;"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">启用 Aliddns 域名解析</a></th>
+											<th width="30%" style="border-top: 0 none;"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">启用动态域名</a></th>
 											<td style="border-top: 0 none;">
 													<div class="main_itoggle">
 													<div id="aliddns_enable_on_of">
@@ -182,20 +175,20 @@ function change_aliddns_enable_bridge(mflag){
 											</td>
 										</tr>
 										<tr id="aliddns_interval_tr" style="display:none;">
-											<th width="30%" style="border-top: 0 none;"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">检查周期(秒) :</a></th>
+											<th width="30%" style="border-top: 0 none;"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">检查周期 (秒) </a></th>
 											<td style="border-top: 0 none;">
 												<input type="text" maxlength="5" class="input" size="15" id="aliddns_interval" name="aliddns_interval" placeholder="600" value="<% nvram_get_x("","aliddns_interval"); %>"  onkeypress="return is_number(this,event);" />
 											</td>
 										</tr>
 										<tr id="aliddns_ttl_tr" style="display:none;">
-											<th width="30%" style="border-top: 0 none;"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">解析TTL(秒) :</a></th>
+											<th width="30%" style="border-top: 0 none;"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">解析TTL (秒) </a></th>
 											<td style="border-top: 0 none;">
 												<input type="text" maxlength="5" class="input" size="15" id="aliddns_ttl" name="aliddns_ttl" placeholder="600" value="<% nvram_get_x("","aliddns_ttl"); %>"  onkeypress="return is_number(this,event);" />
-												<div>&nbsp;<span style="color:#888;">[1-86400]默认10分钟，免费版的范围是600-86400</span></div>
+												<div>&nbsp;<span style="color:#888;">[1-86400] 默认 10 分钟，免费版的范围是 120-86400</span></div>
 											</td>
 										</tr>
 										<tr id="aliddns_ak_tr" style="display:none;">
-											<th width="30%" style="border-top: 0 none;"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">Access Key ID :</a></th>
+											<th width="30%" style="border-top: 0 none;"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">账户 API 令牌 </a></th>
 											<td style="border-top: 0 none;">
 											<div class="input-append">
 												<input type="password" maxlength="512" class="input" size="15" name="aliddns_ak" id="aliddns_ak" style="width: 175px;" value="<% nvram_get_x("","aliddns_ak"); %>" onKeyPress="return is_string(this,event);"/>
@@ -204,7 +197,7 @@ function change_aliddns_enable_bridge(mflag){
 											</td>
 										</tr>
 										<tr id="aliddns_sk_tr" style="display:none;">
-											<th width="30%" style="border-top: 0 none;"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">Access Key Secret :</a></th>
+											<th width="30%" style="border-top: 0 none;"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">域名区域 ID</a></th>
 											<td style="border-top: 0 none;">
 											<div class="input-append">
 												<input type="password" maxlength="512" class="input" size="15" name="aliddns_sk" id="aliddns_sk" style="width: 175px;" value="<% nvram_get_x("","aliddns_sk"); %>" onKeyPress="return is_string(this,event);"/>
@@ -213,24 +206,24 @@ function change_aliddns_enable_bridge(mflag){
 											</td>
 										</tr>
 										<tr id="aliddns_domain_tr" style="display:none;">
-											<th width="30%" style="border-top: 0 none;"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">顶级域名1</a></th>
+											<th width="30%" style="border-top: 0 none;"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">绑定域名</a></th>
 											<td style="border-top: 0 none;">
 												<input style="width: 80px;" type="text" maxlength="255" class="input" size="15" id="aliddns_name" name="aliddns_name" placeholder="www" value="<% nvram_get_x("","aliddns_name"); %>" onKeyPress="return is_string(this,event);" /> . <input style="width: 110px;" type="text" maxlength="255" class="input" size="15" id="aliddns_domain" name="aliddns_domain" placeholder="google.com" value="<% nvram_get_x("","aliddns_domain"); %>" onKeyPress="return is_string(this,event);" />
 											</td>
 										</tr>
-										<tr id="aliddns_domain2_tr" style="display:none;">
+										<tr id="aliddns_domain2_tr" style="display:none;position:fixed;top:-100px;">
 											<th width="30%" style="border-top: 0 none;"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">顶级域名2</a></th>
 											<td style="border-top: 0 none;">
 												<input style="width: 80px;" type="text" maxlength="255" class="input" size="15" id="aliddns_name2" name="aliddns_name2" placeholder="www" value="<% nvram_get_x("","aliddns_name2"); %>" onKeyPress="return is_string(this,event);" /> . <input style="width: 110px;" type="text" maxlength="255" class="input" size="15" id="aliddns_domain2" name="aliddns_domain2" placeholder="google.com" value="<% nvram_get_x("","aliddns_domain2"); %>" onKeyPress="return is_string(this,event);" />
 											</td>
 										</tr>
-										<tr id="aliddns_domain6_tr" style="display:none;">
+										<tr id="aliddns_domain6_tr" style="display:none;position:fixed;top:-100px;">
 											<th width="30%" style="border-top: 0 none;"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">顶级域名3[IPv6]</a></th>
 											<td style="border-top: 0 none;">
 												<input style="width: 80px;" type="text" maxlength="255" class="input" size="15" id="aliddns_name6" name="aliddns_name6" placeholder="www" value="<% nvram_get_x("","aliddns_name6"); %>" onKeyPress="return is_string(this,event);" /> . <input style="width: 110px;" type="text" maxlength="255" class="input" size="15" id="aliddns_domain6" name="aliddns_domain6" placeholder="google.com" value="<% nvram_get_x("","aliddns_domain6"); %>" onKeyPress="return is_string(this,event);" />
 											</td>
 										</tr>
-										<tr id="row_post_wan_script" style="display:none;">
+										<tr id="row_post_wan_script" style="display:none;position:fixed;top:-100px;">
 											<td colspan="2" style="border-top: 0 none;">
 												<i class="icon-hand-right"></i> <a href="javascript:spoiler_toggle('script2')"><span>Aliddns 脚本-基于 Aliddns 用户 API 实现的纯 Shell 动态域名客户端</span></a>
 												<div id="script2" style="display:none;">
