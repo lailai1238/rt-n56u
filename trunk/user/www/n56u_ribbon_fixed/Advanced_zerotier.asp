@@ -201,13 +201,13 @@ function showMRULESList(){
 								<div class="row-fluid">
 									<div id="tabMenu" class="submenuBlock"></div>
 									<div class="alert alert-info" style="margin: 10px;">
-									<p>Zerotier是一个开源，跨平台，而且适合内网穿透互联的傻瓜配置虚拟 VPN LAN<br>
+									<p>ZeroTier 是一个开源、跨平台，而且适合内网穿透互联的傻瓜配置虚拟 VPN 组网软件<br>
 									</p>
 									</div>
 
-									<table width="100%" align="center" cellpadding="4" cellspacing="0" class="table">
+									<table width="100%" align="center" cellpadding="4" cellspacing="0" class="table" style="width: 90%;">
 										<tr>
-											<th width="30%" style="border-top: 0 none;">启用ZeroTier</th>
+											<th width="30%" style="border-top: 0 none;">启用 ZeroTier</th>
 											<td style="border-top: 0 none;">
 													<div class="main_itoggle">
 													<div id="zerotier_enable_on_of">
@@ -222,13 +222,13 @@ function showMRULESList(){
 
 										</tr>
 										</tr>
-<tr><th>ZeroTier Network ID</th>
+<tr><th>ZeroTier 网络 ID</th>
 				<td>
 					<input type="text" class="input" name="zerotier_id" id="zerotier_id" style="width: 200px" value="<% nvram_get_x("","zerotier_id"); %>" />
 				</td>
 			</tr>
 			<tr>
-											<th width="30%" style="border-top: 0 none;">自动允许客户端NAT</th>
+											<th width="30%" style="border-top: 0 none;">自动允许客户端 NAT</th>
 											<td style="border-top: 0 none;">
 													<div class="main_itoggle">
 													<div id="zerotier_nat_on_of">
@@ -239,20 +239,20 @@ function showMRULESList(){
 													<input type="radio" value="1" name="zerotier_nat" id="zerotier_nat_1" class="input" value="1" <% nvram_match_x("", "zerotier_nat", "1", "checked"); %> /><#checkbox_Yes#>
 													<input type="radio" value="0" name="zerotier_nat" id="zerotier_nat_0" class="input" value="0" <% nvram_match_x("", "zerotier_nat", "0", "checked"); %> /><#checkbox_No#>
 												</div>
-												 允许Zerotier的拨入客户端访问路由器LAN资源（需要在 Zerotier管理页面设定到LAN网段的路由表）
+												 <small style="font-size: 12px;color: #888;">允许来自 ZeroTier 的客户端访问路由器 LAN 资源（需要在 ZeroTier 管理页面设定，到 LAN 网段的路由信息）</small>
 											</td>
 
 										</tr>
 										<tr>
-											<th>zerotier官网</th>
+											<th>ZeroTier 控制面板</th>
 											<td>
-				<input type="button" class="btn btn-success" value="zerotier官网" onclick="window.open('https://my.zerotier.com/network')" size="0">
-				<br>点击跳转到Zerotier官网管理平台，新建或者管理网络，并允许客户端接入访问你私人网路（新接入的节点默认不允许访问）
+				<input type="button" class="btn btn-success" value="ZeroTier 控制面板" onclick="window.open('https://my.zerotier.com/network')" size="0">
+				<br><small style="font-size: 12px;color: #888;">点击跳转到 ZeroTier 官网管理平台，新建或者管理网络，并允许客户端接入访问你私人网路（新接入的节点默认不允许访问）</small>
 											</td>
 										</tr>
 									</table>
-<table width="100%" align="center" cellpadding="4" cellspacing="0" class="table">
-	<tr> <th colspan="4">需要访问其它zerotier的内网LAN网段,IP和网关和zerotier后台对应即可(本机的LAN网段不用填进去)</th></tr>
+<table width="100%" align="center" cellpadding="4" cellspacing="0" class="table"  style="width: 90%;">
+	<tr> <th colspan="4">站到站网络 - 对端网络静态路由</th></tr>
                                         <tr id="row_rules_caption">
 										 
                                             <th width="10%">
@@ -294,7 +294,7 @@ function showMRULESList(){
 										<tr>
 											<td colspan="4" style="border-top: 0 none;">
 												<br />
-												<center><input class="btn btn-primary" style="width: 219px" type="button" value="<#CTL_apply#>" onclick="applyRule()" /></center>
+												<center style="margin-top: -60px;margin-bottom: 40px;"><input class="btn btn-primary" style="width: 219px" type="button" value="<#CTL_apply#>" onclick="applyRule()" /></center>
 											</td>
 										</tr>
 									</table>

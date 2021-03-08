@@ -137,22 +137,22 @@ function done_validating(action){
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="box well grad_colour_dark_blue">
-							<h2 class="box_head round_top">Frp - 内网穿透</h2>
-							<div class="round_bottom">
+							<h2 class="box_head round_top">FRP - 内网穿透</h2>
+							<div class="round_bottom" style="padding: 10px 20px;">
 								<div class="row-fluid">
 									<div id="tabMenu" class="submenuBlock"></div>
-									<div class="alert alert-info" style="margin: 10px;">frp 是一个可用于内网穿透的高性能的反向代理应用，支持 tcp, udp 协议，为 http 和 https 应用协议提供了额外的能力，且尝试性支持了点对点穿透。
+									<div class="alert alert-info" style="margin: 10px;">FRP 是一个可用于内网穿透的高性能的反向代理应用，支持 TCP、UDP 协议，为 HTTP 和 HTTPS 应用协议提供了额外的能力，且尝试性支持了点对点穿透。
 									</div>
 
 									<table width="100%" align="center" cellpadding="4" cellspacing="0" class="table">
-									<tr> <th>frpc<#running_status#></th>
+									<tr> <th>客户端<#running_status#></th>
                                             <td id="frpc_status" colspan="2"></td>
                                         </tr>
-										<tr> <th>frps<#running_status#></th>
+										<tr> <th>服务端<#running_status#></th>
                                             <td id="frps_status" colspan="2"></td>
                                         </tr>
 										<tr>
-											<th width="30%"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">启用frpc</a></th>
+											<th width="30%"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">启用 FRPC 客户端</a></th>
 											<td>
 													<div class="main_itoggle">
 													<div id="frpc_enable_on_of">
@@ -166,7 +166,7 @@ function done_validating(action){
 											</td>
 										</tr>
 												<tr>
-											<th width="30%"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">启用frps</a></th>
+											<th width="30%"><a class="help_tooltip" href="javascript: void(0)" onmouseover="openTooltip(this, 26, 9);">启用 FRPS 服务端</a></th>
 											<td>
 													<div class="main_itoggle">
 													<div id="frps_enable_on_of">
@@ -181,7 +181,7 @@ function done_validating(action){
 										</tr>
 										<tr id="row_post_wan_script">
 											<td colspan="2">
-												<i class="icon-hand-right"></i> <a href="javascript:spoiler_toggle('script2')"><span>frp脚本-请自行配置脚本里的相关参数</span></a>
+												<i class="icon-hand-right"></i> <a href="javascript:spoiler_toggle('script2')"><span>FRP 客户端与服务端配置文件</span></a>
 												<div id="script2">
 													<textarea rows="18" wrap="off" spellcheck="false" maxlength="314571" class="span12" name="scripts.frp_script.sh" style="font-family:'Courier New'; font-size:12px;"><% nvram_dump("scripts.frp_script.sh",""); %></textarea>
 												</div>
