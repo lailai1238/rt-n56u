@@ -5,7 +5,7 @@ clean:
 
 romfs:
 	./makedevlinks $(ROMFSDIR)
-	$(ROMFSINST) /sbin/radio2_kicksta_rssilow
+	$(ROMFSINST) /sbin/radio2_kicksta
 	$(ROMFSINST) /sbin/dev_init.sh
 	$(ROMFSINST) /sbin/reset_ss.sh
 	$(ROMFSINST) /sbin/mtd_storage.sh
