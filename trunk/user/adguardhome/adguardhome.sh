@@ -137,32 +137,32 @@ fi
 
 dl_adg(){
 logger -t "AdGuardHome" "下载AdGuardHome"
-#wget --no-check-certificate -O /media/Ai_Card01/AdGuardHome.tar.gz https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.101.0/AdGuardHome_linux_mipsle.tar.gz
-if [ ! -f "/media/Ai_Card01/AdGuardHome/AdGuardHome" ]; then
-  curl -k -s -o /media/Ai_Card01/AdGuardHome/AdGuardHome --connect-timeout 10 --retry 3 https://github.com/240038901/rt-n56u/trunk/user/adguardhome/AdGuardHome
+#wget --no-check-certificate -O /media/AiCard_01/AdGuardHome.tar.gz https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.101.0/AdGuardHome_linux_mipsle.tar.gz
+if [ ! -f "/media/AiCard_01/AdGuardHome/AdGuardHome" ]; then
+  curl -k -s -o /media/AiCard_01/AdGuardHome/AdGuardHome --connect-timeout 10 --retry 3 https://github.com/240038901/rt-n56u/trunk/user/adguardhome/AdGuardHome
 fi
 
-if [ ! -f "/media/Ai_Card01/AdGuardHome/AdGuardHome" ]; then
+if [ ! -f "/media/AiCard_01/AdGuardHome/AdGuardHome" ]; then
 logger -t "AdGuardHome" "AdGuardHome下载失败，请检查是否能正常访问github!程序将退出。"
 nvram set adg_enable=0
 exit 0
 else
 logger -t "AdGuardHome" "AdGuardHome下载成功。"
-chmod 777 /media/Ai_Card01/AdGuardHome/AdGuardHome
+chmod 777 /media/AiCard_01/AdGuardHome/AdGuardHome
 fi
 }
 
 start_adg(){
     mkdir -p /etc/storage/AdGuardHome
-    if [ ! -f "/media/Ai_Card01/AdGuardHome/AdGuardHome" ]; then
-	mkdir -p /media/Ai_Card01/AdGuardHome
+    if [ ! -f "/media/AiCard_01/AdGuardHome/AdGuardHome" ]; then
+	mkdir -p /media/AiCard_01/AdGuardHome
 	dl_adg
 	fi
 	getconfig
 	change_dns
 	set_iptable
 	logger -t "AdGuardHome" "运行AdGuardHome"
-	eval "/media/Ai_Card01/AdGuardHome/AdGuardHome -c $adg_file -w /media/Ai_Card01/AdGuardHome -v" &
+	eval "/media/AiCard_01/AdGuardHome/AdGuardHome -c $adg_file -w /media/AiCard_01/AdGuardHome -v" &
 
 }
 stop_adg(){
