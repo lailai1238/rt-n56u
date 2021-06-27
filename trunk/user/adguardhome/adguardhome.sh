@@ -148,6 +148,7 @@ logger -t "AdGuardHome" "下载AdGuardHome"
 wget --no-check-certificate -O $adgstorage/AdGuardHome/AdGuardHome -T 10 -c 5 https://github.com/240038901/rt-n56u/releases/download/1.0/AdGuardHome
 if [ $? -ne 0 ]; then
 rm -rf /$adgstorage/AdGuardHome/AdGuardHome
+fi
 
 if [ ! -f "$adgstorage/AdGuardHome/AdGuardHome" ]; then
 logger -t "AdGuardHome" "AdGuardHome下载失败，请检查是否能正常访问github!程序将退出。"
