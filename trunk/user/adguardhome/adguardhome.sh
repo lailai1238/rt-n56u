@@ -1,4 +1,12 @@
 #!/bin/sh
+##优先顺序为SD卡》》U盘》》缓存##
+if [ -d "/media/AiDisk_a1/" ]; then
+    adgstorage="/media/AiDisk_a1"
+elif [ -d "/media/AiCard_01/" ]; then
+    adgstorage="/media/AiCard_01"
+else
+    adgstorage="/tmp"
+fi
 
 change_dns() {
 if [ "$(nvram get adg_redirect)" = 1 ]; then
@@ -137,32 +145,31 @@ fi
 
 dl_adg(){
 logger -t "AdGuardHome" "下载AdGuardHome"
-#wget --no-check-certificate -O /media/AiCard_01/AdGuardHome.tar.gz https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.101.0/AdGuardHome_linux_mipsle.tar.gz
-if [ ! -f "/media/AiCard_01/AdGuardHome/AdGuardHome" ]; then
-  wget --no-check-certificate -O /media/AiCard_01/AdGuardHome/AdGuardHome -T 10 -c 5 https://github.com/240038901/rt-n56u/releases/download/1.0/AdGuardHome
+if [ ! -f "$adgstorage/AdGuardHome/AdGuardHome" ]; then
+  wget --no-check-certificate -O $adgstorage/AdGuardHome/AdGuardHome -T 10 -c 5 https://github.com/240038901/rt-n56u/releases/download/1.0/AdGuardHome
 fi
 
-if [ ! -f "/media/AiCard_01/AdGuardHome/AdGuardHome" ]; then
+if [ ! -f "$adgstorage/AdGuardHome/AdGuardHome" ]; then
 logger -t "AdGuardHome" "AdGuardHome下载失败，请检查是否能正常访问github!程序将退出。"
 nvram set adg_enable=0
 exit 0
 else
 logger -t "AdGuardHome" "AdGuardHome下载成功。"
-chmod 777 /media/AiCard_01/AdGuardHome/AdGuardHome
 fi
 }
 
 start_adg(){
     mkdir -p /etc/storage/AdGuardHome
-    if [ ! -f "/media/AiCard_01/AdGuardHome/AdGuardHome" ]; then
-	mkdir -p /media/AiCard_01/AdGuardHome
+    if [ ! -f "$adgstorage/AdGuardHome/AdGuardHome" ]; then
+	mkdir -p $adgstorage/AdGuardHome
 	dl_adg
     fi
 	getconfig
 	change_dns
 	set_iptable
 	logger -t "AdGuardHome" "运行AdGuardHome"
-	eval "/media/AiCard_01/AdGuardHome/AdGuardHome -c $adg_file -w /media/AiCard_01/AdGuardHome -v" &
+        chmod 777 $adgstorage/AdGuardHome/AdGuardHome
+	eval "$adgstorage/AdGuardHome/AdGuardHome -c $adg_file -w $adgstorage/AdGuardHome -v" &
 
 }
 stop_adg(){
