@@ -1,9 +1,9 @@
 #!/bin/sh
 ##优先顺序为SD卡》》U盘》》缓存##
-if [ -d "/media/AiDisk_a1/" ]; then
-    adgstorage="/media/AiDisk_a1"
-elif [ -d "/media/AiCard_01/" ]; then
+if [ -d "/media/AiCard_01/" ]; then
     adgstorage="/media/AiCard_01"
+elif [ -d "/media/AiDisk_a1/" ]; then
+    adgstorage="/media/AiDisk_a1"
 else
     adgstorage="/tmp"
 fi
