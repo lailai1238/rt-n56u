@@ -159,7 +159,6 @@ fi
 }
 
 start_adg(){
-    mkdir -p /etc/storage/AdGuardHome
     if [ ! -f "$adgstorage/AdGuardHome/AdGuardHome" ]; then
 	mkdir -p $adgstorage/AdGuardHome
 	dl_adg
