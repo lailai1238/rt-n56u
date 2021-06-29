@@ -1,4 +1,5 @@
-SRC_NAME = ZeroTierOne-1.4.6
+SRC_NAME = ZeroTierOne-1.6.5
+SRC_URL=https://github.com/zerotier/ZeroTierOne/archive/refs/tags/1.6.5.tar.gz
 THISDIR = $(shell pwd)
 FLAGS := DEFS=""
 CFLAGS := -O3 -ffunction-sections -fdata-sections
@@ -6,6 +7,11 @@ LDFLAGS := -Wl,--gc-sections,--as-needed
 
 all: extract_test
 	$(MAKE) -j$(HOST_NCPU) -C $(SRC_NAME)
+	
+download_test:
+	( if [ ! -f $(THISDIR)/$(SRC_NAME).tar.gz ]; then \
+		wget -t5 --timeout=20 --no-check-certificate -O $(SRC_NAME).tar.gz $(SRC_URL); \
+	fi )
 
 extract_test:
 	( if [ ! -d $(SRC_NAME) ]; then \
