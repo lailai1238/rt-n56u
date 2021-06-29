@@ -1,7 +1,7 @@
 SRC_NAME = ZeroTierOne-1.6.5
-SRC_URL=https://github.com/zerotier/ZeroTierOne/archive/refs/tags/1.6.5.tar.gz
+SRC_URL = https://codeload.github.com/zerotier/ZeroTierOne/tar.gz/refs/tags/1.6.5
 THISDIR = $(shell pwd)
-FLAGS := DEFS=""
+FLAGS := DEFS="" 
 CFLAGS := -O3 -ffunction-sections -fdata-sections
 LDFLAGS := -Wl,--gc-sections,--as-needed
 
