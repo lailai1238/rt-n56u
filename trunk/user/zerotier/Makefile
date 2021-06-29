@@ -5,7 +5,7 @@ FLAGS := DEFS=""
 CFLAGS := -O3 -ffunction-sections -fdata-sections
 LDFLAGS := -Wl,--gc-sections,--as-needed
 
-all: extract_test
+all: download_test extract_test
 	$(MAKE) -j$(HOST_NCPU) -C $(SRC_NAME)
 	
 download_test:
