@@ -201,7 +201,7 @@ function showMRULESList(){
 								<div class="row-fluid">
 									<div id="tabMenu" class="submenuBlock"></div>
 									<div class="alert alert-info" style="margin: 10px;">
-									<p>Zerotier是一个开源，跨平台，而且适合内网穿透互联的傻瓜配置虚拟 VPN LAN<br>
+									<p>Zerotier是一个开源，跨平台，而且适合内网穿透互联的傻瓜配置虚拟VPN组网<br>
 									</p>
 									</div>
 
@@ -246,7 +246,7 @@ function showMRULESList(){
 										<tr>
 											<th>zerotier官网</th>
 											<td>
-				<input type="button" class="btn btn-success" value="zerotier官网" onclick="window.open('https://my.zerotier.com/network')" size="0">
+				<input type="button" class="btn btn-success" value="zerotier远程管理界面" onclick="window.open('https://my.zerotier.com/network')" size="0">
 				<br>点击跳转到Zerotier官网管理平台，新建或者管理网络，并允许客户端接入访问你私人网路（新接入的节点默认不允许访问）
 											</td>
 										</tr>
